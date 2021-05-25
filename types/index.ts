@@ -21,9 +21,24 @@ export const FACES = [
   'A',
 ] as const
 
+export const HAND_NAMES = [
+  'royal_flush',
+  'straight_flush',
+  'four_of_a_kind',
+  'full_house',
+  'flush',
+  'straight',
+  'three_of_a_kind',
+  'two_pair',
+  'pair',
+  'high_card',
+] as const
+
 export type ICardSuit = typeof SUITS[number]
 
 export type ICardFace = typeof FACES[number]
+
+export type IPokerHandName = typeof HAND_NAMES[number]
 
 export type ICardDirection =
   | 'forwards'
