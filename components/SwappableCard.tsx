@@ -5,6 +5,7 @@ import { Card } from './Card'
 
 export interface ISwappableCardProps {
   card: ICard
+  offset?: number
 }
 
 export const SwappableCard = (props: ISwappableCardProps) => {
@@ -12,8 +13,13 @@ export const SwappableCard = (props: ISwappableCardProps) => {
   const [changing, setChanging] = useState(false)
 
   useEffect(() => {
-    setChanging(props.card !== rendered)
-  }, [props.card])
+    const willChange = props.card !== rendered
+    if (!willChange) return
+
+    setTimeout(() => {
+      setChanging(true)
+    }, props.offset || 0)
+  }, [props.card, props.offset])
 
   const { transform } = useSpring({
     config: config.slow,

@@ -13,6 +13,7 @@ export const CardSequence = ({ cards }: ICardSequenceProps) => {
         <SwappableCard
           key={index}
           card={card}
+          offset={index * 100}
         />
       )}
     </Container>
