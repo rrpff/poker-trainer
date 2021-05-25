@@ -22,3 +22,8 @@ export type ICardFace =
 export type ICardDirection =
   | 'forwards'
   | 'backwards'
+
+export type ICard = {
+  face: ICardFace
+  suit: ICardSuit
+}

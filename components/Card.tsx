@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import styled from '@emotion/styled'
-import { ICardDirection, ICardFace, ICardSuit } from '../types'
+import { CSSProperties } from 'react'
+import { animated } from '@react-spring/web'
+import { ICard } from '../types'
 
 export interface ICardProps {
-  face: ICardFace
-  suit: ICardSuit
-  direction: ICardDirection
+  card: ICard
+  style?: CSSProperties
 }
 
 export const Card = (props: ICardProps) => {
@@ -13,10 +14,10 @@ export const Card = (props: ICardProps) => {
   const dimensions = dimensionsForWidth(160)
 
   return (
-    <CardImage {...props}>
+    <CardImage style={props.style || {}}>
       <Image
         src={src}
-        alt={`${props.face} ${props.suit}`}
+        alt={`${props.card.face} ${props.card.suit}`}
         width={dimensions.width}
         height={dimensions.height}
       />
@@ -24,11 +25,12 @@ export const Card = (props: ICardProps) => {
   )
 }
 
-const CardImage = styled.div<ICardProps>`
+export default Card
+
+const CardImage = styled(animated.div)`
   display: inline-flex;
   position: relative;
 
-  transform: rotateY(${props => props.direction === 'backwards' ? '180deg' : '0deg'});
   transform-style: preserve-3d;
   backface-visibility: hidden;
 
@@ -57,11 +59,11 @@ const dimensionsForWidth = (width: number) => {
 }
 
 const imageSrcForProps = (props: ICardProps) => {
-  const face = props.face === '10' ? 'T' : props.face
-  const suit = props.suit === 'clubs' ? 'C' :
-    props.suit === 'diamonds' ? 'D' :
-    props.suit === 'hearts' ? 'H' :
-    props.suit === 'spades' ? 'S' :
+  const face = props.card.face === '10' ? 'T' : props.card.face
+  const suit = props.card.suit === 'clubs' ? 'C' :
+    props.card.suit === 'diamonds' ? 'D' :
+    props.card.suit === 'hearts' ? 'H' :
+    props.card.suit === 'spades' ? 'S' :
     null
 
   return `/cards/${face}${suit}.svg`
