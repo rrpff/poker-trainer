@@ -24,4 +24,8 @@ export default CardSequence
 const Container = styled.section`
   display: block;
   text-align: center;
+
+  div {
+    margin: 8px;
+  }
 `
