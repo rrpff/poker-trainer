@@ -46,7 +46,7 @@ const CardImage = styled(animated.div)`
     height: 100%;
     width: 100%;
 
-    background: url('/cards/1B.svg');
+    background: url('/cards/2B.svg');
     background-size: 100% 100%;
 
     transform: rotateY(180deg);
