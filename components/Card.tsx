@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { CSSProperties } from 'react'
 import { animated } from '@react-spring/web'
 import { ICard } from '../types'
+import { cardToDescription } from '../lib/utils'
 
 export interface ICardProps {
   card: ICard
@@ -65,12 +66,6 @@ const dimensionsForWidth = (width: number) => {
 }
 
 const imageSrcForProps = (props: ICardProps) => {
-  const face = props.card.face === '10' ? 'T' : props.card.face
-  const suit = props.card.suit === 'clubs' ? 'C' :
-    props.card.suit === 'diamonds' ? 'D' :
-    props.card.suit === 'hearts' ? 'H' :
-    props.card.suit === 'spades' ? 'S' :
-    null
-
-  return `/cards/${face}${suit}.svg`
+  const description = cardToDescription(props.card)
+  return `/cards/${description}.svg`
 }

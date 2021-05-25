@@ -1,22 +1,17 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import { FACES, SUITS, ICard } from '../types'
+import { ICard } from '../types'
+import { createDeck } from '../lib/utils'
 
 function pick <T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-const randomCard = (): ICard => {
-  return {
-    suit: pick(SUITS),
-    face: pick(FACES),
-  }
-}
-
 const randomCards = (num: number): ICard[] => {
+  const deck = createDeck()
   const cards = []
-  for (let i = 0; i < num; i++) cards.push(randomCard())
+  for (let i = 0; i < num; i++) cards.push(pick(deck))
 
   return cards
 }

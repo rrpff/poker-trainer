@@ -1,0 +1,271 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cardToDescription translates a card into a string description 1`] = `
+Array [
+  "2C",
+  "3C",
+  "4C",
+  "5C",
+  "6C",
+  "7C",
+  "8C",
+  "9C",
+  "TC",
+  "JC",
+  "QC",
+  "KC",
+  "AC",
+  "2D",
+  "3D",
+  "4D",
+  "5D",
+  "6D",
+  "7D",
+  "8D",
+  "9D",
+  "TD",
+  "JD",
+  "QD",
+  "KD",
+  "AD",
+  "2S",
+  "3S",
+  "4S",
+  "5S",
+  "6S",
+  "7S",
+  "8S",
+  "9S",
+  "TS",
+  "JS",
+  "QS",
+  "KS",
+  "AS",
+  "2H",
+  "3H",
+  "4H",
+  "5H",
+  "6H",
+  "7H",
+  "8H",
+  "9H",
+  "TH",
+  "JH",
+  "QH",
+  "KH",
+  "AH",
+]
+`;
+
+exports[`createDeck returns a full deck 1`] = `
+Array [
+  Object {
+    "face": "2",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "3",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "4",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "5",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "6",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "7",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "8",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "9",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "T",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "J",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "Q",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "K",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "A",
+    "suit": "clubs",
+  },
+  Object {
+    "face": "2",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "3",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "4",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "5",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "6",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "7",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "8",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "9",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "T",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "J",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "Q",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "K",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "A",
+    "suit": "diamonds",
+  },
+  Object {
+    "face": "2",
+    "suit": "spades",
+  },
+  Object {
+    "face": "3",
+    "suit": "spades",
+  },
+  Object {
+    "face": "4",
+    "suit": "spades",
+  },
+  Object {
+    "face": "5",
+    "suit": "spades",
+  },
+  Object {
+    "face": "6",
+    "suit": "spades",
+  },
+  Object {
+    "face": "7",
+    "suit": "spades",
+  },
+  Object {
+    "face": "8",
+    "suit": "spades",
+  },
+  Object {
+    "face": "9",
+    "suit": "spades",
+  },
+  Object {
+    "face": "T",
+    "suit": "spades",
+  },
+  Object {
+    "face": "J",
+    "suit": "spades",
+  },
+  Object {
+    "face": "Q",
+    "suit": "spades",
+  },
+  Object {
+    "face": "K",
+    "suit": "spades",
+  },
+  Object {
+    "face": "A",
+    "suit": "spades",
+  },
+  Object {
+    "face": "2",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "3",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "4",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "5",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "6",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "7",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "8",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "9",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "T",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "J",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "Q",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "K",
+    "suit": "hearts",
+  },
+  Object {
+    "face": "A",
+    "suit": "hearts",
+  },
+]
+`;
