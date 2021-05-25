@@ -34,6 +34,9 @@ const CardImage = styled(animated.div)`
   transform-style: preserve-3d;
   backface-visibility: hidden;
 
+  border-radius: 15px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+
   &::after {
     content: '';
 
@@ -49,6 +52,9 @@ const CardImage = styled(animated.div)`
     transform: rotateY(180deg);
     transform-style: preserve-3d;
     backface-visibility: hidden;
+
+    border-radius: 15px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   }
 `
 
