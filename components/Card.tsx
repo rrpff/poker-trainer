@@ -24,6 +24,7 @@ export const Card = (props: ICardProps) => {
         alt={`${props.card.face} ${props.card.suit}`}
         width={dimensions.width}
         height={dimensions.height}
+        unoptimized
       />
     </CardImage>
   )
