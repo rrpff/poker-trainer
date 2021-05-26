@@ -9,12 +9,13 @@ export interface ICardProps {
   card: ICard
   highlightType: IHandGuessAccuracy
   highlighted?: boolean
+  width: number
   style?: CSSProperties
 }
 
 export const Card = (props: ICardProps) => {
   const src = imageSrcForProps(props)
-  const dimensions = dimensionsForWidth(160)
+  const dimensions = dimensionsForWidth(props.width)
 
   return (
     <CardImage {...props}>
