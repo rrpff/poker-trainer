@@ -53,6 +53,8 @@ const CardImage = styled(animated.div)<ICardProps>`
     '5px solid transparent' :
     '5px solid transparent'};
 
+  transition: border 0.3s;
+
   &::after {
     content: '';
 
