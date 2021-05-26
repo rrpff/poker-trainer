@@ -7,7 +7,7 @@ import { cardToDescription } from '../lib/utils'
 
 export interface ICardProps {
   card: ICard
-  highlightType: IHandGuessAccuracy
+  highlightType?: IHandGuessAccuracy
   highlighted?: boolean
   width: number
   style?: CSSProperties
