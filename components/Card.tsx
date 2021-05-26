@@ -18,10 +18,9 @@ export const Card = (props: ICardProps) => {
   const dimensions = dimensionsForWidth(props.width)
 
   return (
-    <CardImage {...props}>
+    <CardImage highlighted={props.highlighted || undefined} highlighttype={props.highlightType} {...dimensions}>
       <Image
         src={src}
-        alt={`${props.card.face} ${props.card.suit}`}
         width={dimensions.width}
         height={dimensions.height}
         unoptimized
@@ -36,12 +35,20 @@ Card.defaultProps = {
 
 export default Card
 
-const CardImage = styled(animated.div)<ICardProps>`
+const CardImage = styled(animated.div)<{
+  highlighted?: boolean
+  highlighttype: IHandGuessAccuracy
+  width: number
+  height: number
+}>`
   display: inline-flex;
   position: relative;
 
   transform-style: preserve-3d;
   backface-visibility: hidden;
+
+  height: ${props => props.height + 20}px;
+  width: ${props => props.width + 20}px;
 
   border-radius: 10px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
