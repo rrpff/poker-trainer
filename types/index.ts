@@ -70,3 +70,7 @@ export interface IHandGuessResult {
   cards: ICard[]
   accuracy: IHandGuessAccuracy
 }
+
+export interface IDealer {
+  deal<N extends number>(num: N): ICard[]
+}
