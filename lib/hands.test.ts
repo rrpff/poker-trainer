@@ -10,7 +10,7 @@ import {
   checkTwoPair,
   checkPair,
   checkHighCard,
-} from './poker'
+} from './hands'
 
 test.each`
 
