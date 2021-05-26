@@ -57,3 +57,16 @@ export type IHandCheckResult = {
 }
 
 export type IHandChecker = (cards: ICard[]) => IHandCheckResult
+
+export type IHandGuessAccuracy =
+  | 'exact'
+  | 'close'
+  | 'wrong'
+
+export interface IHandGuessResult {
+  guess: IPokerHandName | null
+  bestName: IPokerHandName
+  bestCards: ICard[]
+  cards: ICard[]
+  accuracy: IHandGuessAccuracy
+}
