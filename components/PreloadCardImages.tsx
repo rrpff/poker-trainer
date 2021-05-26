@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useIsDocumentLoaded } from '../hooks/useIsDocumentLoaded'
 import { cardToDescription, createDeck } from '../lib/utils'
 
 const IMAGES = createDeck()
@@ -7,7 +7,7 @@ const IMAGES = createDeck()
   .map(description => `/cards/${description}.svg`)
 
 export const PreloadCardImages = () => {
-  const startPreload = useDelay(1500)
+  const startPreload = useIsDocumentLoaded()
 
   if (!startPreload) return null
 
@@ -21,15 +21,3 @@ export const PreloadCardImages = () => {
 }
 
 export default PreloadCardImages
-
-const useDelay = (ms: number) => {
-  const [ready, setReady] = useState(false)
-
-  useEffect(() => {
-    setTimeout(() => {
-      setReady(() => true)
-    }, ms)
-  }, [])
-
-  return ready
-}
