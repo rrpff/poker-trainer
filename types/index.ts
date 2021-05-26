@@ -48,3 +48,12 @@ export type ICard = {
   face: ICardFace
   suit: ICardSuit
 }
+
+export type IHandCheckResult = {
+  achieved: boolean
+  description: IPokerHandName
+  cards: ICard[]
+  remaining: ICard[]
+}
+
+export type IHandChecker = (cards: ICard[]) => IHandCheckResult
