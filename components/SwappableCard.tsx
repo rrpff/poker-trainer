@@ -5,7 +5,7 @@ import { Card } from './Card'
 
 export interface ISwappableCardProps {
   card: ICard
-  highlightType: IHandGuessAccuracy
+  highlightType?: IHandGuessAccuracy
   highlighted?: boolean
   width: number
   offset?: number
