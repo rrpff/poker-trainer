@@ -23,6 +23,17 @@ test.each([
   { scenario: 'with spaces', guess: 'pair', expected: 'pair' },
   { scenario: 'with spaces', guess: 'high card', expected: 'high_card' },
 
+  { scenario: 'with "a"', guess: 'a royal flush', expected: 'royal_flush' },
+  { scenario: 'with "a"', guess: 'a straight flush', expected: 'straight_flush' },
+  { scenario: 'with "a"', guess: 'a four of a kind', expected: 'four_of_a_kind' },
+  { scenario: 'with "a"', guess: 'a full house', expected: 'full_house' },
+  { scenario: 'with "a"', guess: 'a flush', expected: 'flush' },
+  { scenario: 'with "a"', guess: 'a straight', expected: 'straight' },
+  { scenario: 'with "a"', guess: 'a three of a kind', expected: 'three_of_a_kind' },
+  { scenario: 'with "a"', guess: 'a two pair', expected: 'two_pair' },
+  { scenario: 'with "a"', guess: 'a pair', expected: 'pair' },
+  { scenario: 'with "a"', guess: 'a high card', expected: 'high_card' },
+
   { scenario: 'with capitalisation', guess: 'Royal Flush', expected: 'royal_flush' },
   { scenario: 'with capitalisation', guess: 'Straight Flush', expected: 'straight_flush' },
   { scenario: 'with capitalisation', guess: 'Four of a Kind', expected: 'four_of_a_kind' },
