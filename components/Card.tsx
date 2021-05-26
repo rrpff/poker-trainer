@@ -5,9 +5,14 @@ import { animated } from '@react-spring/web'
 import { ICard, IHandGuessAccuracy } from '../types'
 import { cardToDescription } from '../lib/utils'
 
+interface IDimensions {
+  width: number
+  height: number
+}
+
 export interface ICardProps {
   card: ICard
-  highlightType?: IHandGuessAccuracy
+  highlighttype?: IHandGuessAccuracy
   highlighted?: boolean
   width: number
   style?: CSSProperties
@@ -18,7 +23,7 @@ export const Card = (props: ICardProps) => {
   const dimensions = dimensionsForWidth(props.width)
 
   return (
-    <CardImage highlighted={props.highlighted || undefined} highlighttype={props.highlightType} {...dimensions}>
+    <CardImage {...props} {...dimensions}>
       <Image
         src={src}
         width={dimensions.width}
@@ -35,12 +40,7 @@ Card.defaultProps = {
 
 export default Card
 
-const CardImage = styled(animated.div)<{
-  highlighted?: boolean
-  highlighttype: IHandGuessAccuracy
-  width: number
-  height: number
-}>`
+const CardImage = styled(animated.div)<ICardProps & IDimensions>`
   display: inline-flex;
   position: relative;
 
@@ -54,9 +54,9 @@ const CardImage = styled(animated.div)<{
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 
   border: ${props => props.highlighted ?
-    props.highlightType === 'exact' ? '5px solid #1dd1a1' :
-    props.highlightType === 'close' ? '5px solid #feca57' :
-    props.highlightType === 'wrong' ? '5px solid #ff6b6b' :
+    props.highlighttype === 'exact' ? '5px solid #1dd1a1' :
+    props.highlighttype === 'close' ? '5px solid #feca57' :
+    props.highlighttype === 'wrong' ? '5px solid #ff6b6b' :
     '5px solid transparent' :
     '5px solid transparent'};
 
@@ -85,7 +85,7 @@ const CardImage = styled(animated.div)<{
 
 const ASPECT_RATIO = 0.7134328358
 
-const dimensionsForWidth = (width: number) => {
+const dimensionsForWidth = (width: number): IDimensions => {
   return { width, height: width / ASPECT_RATIO }
 }
 

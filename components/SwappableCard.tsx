@@ -5,7 +5,7 @@ import { Card } from './Card'
 
 export interface ISwappableCardProps {
   card: ICard
-  highlightType?: IHandGuessAccuracy
+  highlighttype?: IHandGuessAccuracy
   highlighted?: boolean
   width: number
   offset?: number
@@ -41,7 +41,7 @@ export const SwappableCard = (props: ISwappableCardProps) => {
   return (
     <Card
       card={rendered}
-      highlightType={props.highlightType}
+      highlighttype={props.highlighttype}
       highlighted={props.highlighted}
       width={props.width}
       style={{ transform }}

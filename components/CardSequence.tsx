@@ -7,11 +7,11 @@ import { SwappableCard } from './SwappableCard'
 
 export interface ICardSequenceProps {
   cards: ICard[]
-  highlightType: IHandGuessAccuracy
+  highlighttype: IHandGuessAccuracy
   highlightedCards: ICard[]
 }
 
-export const CardSequence = ({ cards, highlightType, highlightedCards }: ICardSequenceProps) => {
+export const CardSequence = ({ cards, highlighttype, highlightedCards }: ICardSequenceProps) => {
   const [dimensions, setDimensions] = useState({ width: -1, height: -1 })
   const cardWidth = useMemo(() => Math.max(60, dimensions.width / 10), [dimensions])
 
@@ -24,7 +24,7 @@ export const CardSequence = ({ cards, highlightType, highlightedCards }: ICardSe
               <SwappableCard
                 key={index}
                 card={card}
-                highlightType={highlightType}
+                highlighttype={highlighttype}
                 highlighted={highlightedCards.some(c => cardsMatch(c, card))}
                 offset={index * 100}
                 width={cardWidth}

@@ -15,19 +15,19 @@ export const WithSevenCards = Template.bind({})
 WithSevenCards.args = {
   cards: CARDS.slice(0, 7),
   highlightedCards: [],
-  highlightType: 'exact',
+  highlighttype: 'exact',
 }
 
 export const WithRandomlyHighlightedCards = Template.bind({})
 WithRandomlyHighlightedCards.args = {
   cards: CARDS.slice(0, 7),
   highlightedCards: CARDS.slice(0, 7).filter(() => Math.random() > 0.5),
-  highlightType: 'exact',
+  highlighttype: 'exact',
 }
 
 export const WithNoCards = Template.bind({})
 WithNoCards.args = {
   cards: [],
   highlightedCards: [],
-  highlightType: 'exact',
+  highlighttype: 'exact',
 }
