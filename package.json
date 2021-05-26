@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@react-spring/web": "^9.1.2",
     "fastest-levenshtein": "^1.0.12",
