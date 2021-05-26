@@ -23,7 +23,7 @@ export const Card = (props: ICardProps) => {
   const dimensions = dimensionsForWidth(props.width)
 
   return (
-    <CardImage {...props} {...dimensions}>
+    <CardImage {...props} {...dimensions} highlighted={props.highlighted?.toString()}>
       <Image
         src={src}
         width={dimensions.width}
@@ -53,7 +53,7 @@ const CardImage = styled(animated.div)<ICardProps & IDimensions>`
   border-radius: 10px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 
-  border: ${props => props.highlighted ?
+  border: ${props => props.highlighted === 'true' ?
     props.highlighttype === 'exact' ? '5px solid #1dd1a1' :
     props.highlighttype === 'close' ? '5px solid #feca57' :
     props.highlighttype === 'wrong' ? '5px solid #ff6b6b' :
