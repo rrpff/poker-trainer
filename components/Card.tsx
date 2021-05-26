@@ -23,7 +23,14 @@ export const Card = (props: ICardProps) => {
   const dimensions = dimensionsForWidth(props.width)
 
   return (
-    <CardImage {...props} {...dimensions} highlighted={props.highlighted?.toString()}>
+    <CardImage
+      {...props}
+      {...dimensions}
+      highlighted={props.highlighted?.toString()}
+      data-testid="card"
+      data-test-suit={props.card.suit}
+      data-test-face={props.card.face}
+    >
       <Image
         src={src}
         width={dimensions.width}

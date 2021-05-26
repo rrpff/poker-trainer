@@ -74,3 +74,7 @@ export interface IHandGuessResult {
 export interface IDealer {
   deal<N extends number>(num: N): ICard[]
 }
+
+export interface IAppDependencies {
+  dealer: IDealer
+}
