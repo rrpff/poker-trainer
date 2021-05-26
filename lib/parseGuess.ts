@@ -1,6 +1,8 @@
 import { closest, distance } from 'fastest-levenshtein'
 import { HAND_NAMES, IPokerHandName } from '../types'
 
+const STARTS_WITH_FACE_REGEX = /^(two|three|four|five|six|seven|eight|nine|ten|jack|queen|king|ace|[0-9])/g
+
 export const parseGuess = (guess: string): IPokerHandName | null => {
   const cleaned = guess
     .replace(/2/g, 'two')
@@ -14,6 +16,10 @@ export const parseGuess = (guess: string): IPokerHandName | null => {
   const bestMatch = closest(cleaned, [...HAND_NAMES])
   const bestMatchDistance = distance(bestMatch, cleaned)
   if (bestMatchDistance < 3) return bestMatch as IPokerHandName
+
+  const withoutFace = cleaned.replace(STARTS_WITH_FACE_REGEX, '')
+  const withoutFaceDistance = distance('high_card', withoutFace + '_card')
+  if (withoutFaceDistance < 3) return 'high_card'
 
   return null
 }
