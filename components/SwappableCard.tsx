@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useSpring, config } from '@react-spring/web'
-import { ICard } from '../types'
+import { ICard, IHandGuessAccuracy } from '../types'
 import { Card } from './Card'
 
 export interface ISwappableCardProps {
   card: ICard
+  highlightType: IHandGuessAccuracy
+  highlighted?: boolean
   offset?: number
 }
 
@@ -38,6 +40,8 @@ export const SwappableCard = (props: ISwappableCardProps) => {
   return (
     <Card
       card={rendered}
+      highlightType={props.highlightType}
+      highlighted={props.highlighted}
       style={{ transform }}
     />
   )

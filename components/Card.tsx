@@ -2,11 +2,13 @@ import Image from 'next/image'
 import styled from '@emotion/styled'
 import { CSSProperties } from 'react'
 import { animated } from '@react-spring/web'
-import { ICard } from '../types'
+import { ICard, IHandGuessAccuracy } from '../types'
 import { cardToDescription } from '../lib/utils'
 
 export interface ICardProps {
   card: ICard
+  highlightType: IHandGuessAccuracy
+  highlighted?: boolean
   style?: CSSProperties
 }
 
@@ -15,7 +17,7 @@ export const Card = (props: ICardProps) => {
   const dimensions = dimensionsForWidth(160)
 
   return (
-    <CardImage style={props.style || {}}>
+    <CardImage {...props}>
       <Image
         src={src}
         alt={`${props.card.face} ${props.card.suit}`}
@@ -26,17 +28,28 @@ export const Card = (props: ICardProps) => {
   )
 }
 
+Card.defaultProps = {
+  style: {}
+}
+
 export default Card
 
-const CardImage = styled(animated.div)`
+const CardImage = styled(animated.div)<ICardProps>`
   display: inline-flex;
   position: relative;
 
   transform-style: preserve-3d;
   backface-visibility: hidden;
 
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+
+  border: ${props => props.highlighted ?
+    props.highlightType === 'exact' ? '5px solid #1dd1a1' :
+    props.highlightType === 'close' ? '5px solid #feca57' :
+    props.highlightType === 'wrong' ? '5px solid #ff6b6b' :
+    '5px solid transparent' :
+    '5px solid transparent'};
 
   &::after {
     content: '';
@@ -54,7 +67,7 @@ const CardImage = styled(animated.div)`
     transform-style: preserve-3d;
     backface-visibility: hidden;
 
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   }
 `
