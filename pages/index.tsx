@@ -1,10 +1,13 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { GuessingGame } from '../containers/GuessingGame'
+import { withDependencies } from '../lib/withDependencies'
+import { knuthDealer } from '../lib/dealers/knuth'
+import { LocalstorageStatisticsGateway } from '../gateways/LocalstorageStatisticsGateway'
 
 const PreloadCardImages = dynamic(() => import('../components/PreloadCardImages'), { ssr: false })
 
-export default function Home() {
+export const Home = () => {
   return (
     <main>
       <Head>
@@ -16,3 +19,8 @@ export default function Home() {
     </main>
   )
 }
+
+export default withDependencies(Home, {
+  dealer: knuthDealer,
+  statisticsGateway: new LocalstorageStatisticsGateway(),
+})
