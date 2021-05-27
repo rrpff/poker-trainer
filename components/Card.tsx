@@ -30,6 +30,7 @@ export const Card = (props: ICardProps) => {
       data-testid="card"
       data-test-suit={props.card.suit}
       data-test-face={props.card.face}
+      suppressHydrationWarning
     >
       <Image
         src={src}
