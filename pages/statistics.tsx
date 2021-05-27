@@ -12,7 +12,7 @@ export const StatisticsPage = () => {
         <title>Statistics - Poker Trainer</title>
       </Head>
 
-      <PageContent style={{ paddingTop: '20px' }}>
+      <PageContent style={{ paddingTop: 20, paddingBottom: 20 }}>
         <Statistics />
       </PageContent>
     </Layout>
