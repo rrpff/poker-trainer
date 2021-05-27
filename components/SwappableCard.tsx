@@ -13,11 +13,14 @@ export interface ISwappableCardProps {
 
 export const SwappableCard = (props: ISwappableCardProps) => {
   const [rendered, setRendered] = useState(props.card)
+  const [highlighted, setHighlighted] = useState(props.highlighted)
   const [changing, setChanging] = useState(false)
 
   useEffect(() => {
     const willChange = props.card !== rendered
     if (!willChange) return
+
+    setHighlighted(false)
 
     setTimeout(() => {
       setChanging(true)
@@ -32,6 +35,7 @@ export const SwappableCard = (props: ISwappableCardProps) => {
       completion: (value: number) => {
         if (value >= 1) {
           setRendered(props.card)
+          setHighlighted(props.highlighted)
           setChanging(false)
         }
       }
@@ -42,7 +46,7 @@ export const SwappableCard = (props: ISwappableCardProps) => {
     <Card
       card={rendered}
       highlighttype={props.highlighttype}
-      highlighted={props.highlighted}
+      highlighted={highlighted}
       width={props.width}
       style={{ transform }}
     />
