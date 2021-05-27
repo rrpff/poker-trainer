@@ -2,6 +2,22 @@ import Pokersolver from 'pokersolver'
 import { FACES, ICard, ICardFace, IHandChecker, IHandCheckResult, IPokerHandName } from '../types'
 import { cardsMatch, without } from './utils'
 
+export const checkHand = (hand: IPokerHandName, cards: ICard[]): IHandCheckResult => {
+  switch (hand) {
+    case 'royal_flush': return checkRoyalFlush(cards)
+    case 'straight_flush': return checkStraightFlush(cards)
+    case 'four_of_a_kind': return checkFourOfAKind(cards)
+    case 'full_house': return checkFullHouse(cards)
+    case 'flush': return checkFlush(cards)
+    case 'straight': return checkStraight(cards)
+    case 'three_of_a_kind': return checkThreeOfAKind(cards)
+    case 'two_pair': return checkTwoPair(cards)
+    case 'pair': return checkPair(cards)
+    case 'high_card': return checkHighCard(cards)
+    default: throw new Error('Invalid hand name')
+  }
+}
+
 export const checkRoyalFlush: IHandChecker = (cards: ICard[]) =>
   checkWithPokersolver(Pokersolver.RoyalFlush, cards, 'royal_flush')
 

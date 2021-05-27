@@ -1,4 +1,6 @@
 import { cardDescriptionToCard, cardsMatch, without } from './utils'
+import { HAND_NAMES } from '../types'
+import { generatePokerHand } from './generatePokerHand'
 import {
   checkRoyalFlush,
   checkStraightFlush,
@@ -10,6 +12,7 @@ import {
   checkTwoPair,
   checkPair,
   checkHighCard,
+  checkHand,
 } from './hands'
 
 test.each`
@@ -77,5 +80,18 @@ test.each`
     achieved,
     cards: expect.arrayContaining(expectedCards),
     remaining: expect.arrayContaining(expectedRemaining),
+  })
+})
+
+test.each(HAND_NAMES)('checkHand can check a %s', description => {
+  const hand = generatePokerHand(description)
+
+  expect(checkHand(description, hand.cards)).toEqual({
+    achieved: true,
+    description: description,
+    cards: hand.handCards,
+    remaining: expect.arrayContaining(
+      without(hand.cards, hand.handCards, cardsMatch)
+    ),
   })
 })

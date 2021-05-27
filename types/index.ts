@@ -71,6 +71,12 @@ export interface IHandGuessResult {
   accuracy: IHandGuessAccuracy
 }
 
+export interface IPokerHand {
+  handName: IPokerHandName
+  handCards: ICard[]
+  cards: ICard[]
+}
+
 export interface IDealer {
   deal<N extends number>(num: N): ICard[]
 }
@@ -104,6 +110,14 @@ export type IUseHistoricalGuessStatisticsHook = (input: IUseHistoricalGuessStati
   overall: { correctGuessFrequency: number | null }
   hands: {
     [K in IPokerHandName]: { correctGuessFrequency: number | null }
+  }
+}
+
+export type IUseHandExamplesHook = () => {
+  [K in IPokerHandName]: {
+    handName: K
+    handCards: ICard[]
+    cards: ICard[]
   }
 }
 
