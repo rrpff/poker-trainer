@@ -73,14 +73,14 @@ const NavigationBar = styled.nav<{ expanded: boolean }>`
   top: 0px;
   left: 0px;
   width: 100%;
-  height: ${props => props.expanded ? '100%' : 'auto'};
+  height: ${props => props.expanded ? '100%' : '70px'};
   z-index: 90;
 
   @media (min-width: 600px) {
     align-items: center;
     flex-direction: row;
 
-    height: auto;
+    height: 55px;
     padding-top: 20px;
   }
 `

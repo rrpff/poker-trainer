@@ -29,4 +29,8 @@ export const Layout = (props: ILayoutProps) => {
 const Main = styled.main`
   margin-top: 70px;
   z-index: 10;
+
+  @media (min-width: 600px) {
+    margin-top: 55px;
+  }
 `
