@@ -114,10 +114,13 @@ export type IUseHistoricalGuessStatisticsHook = (input: IUseHistoricalGuessStati
 }
 
 export type IUseHandExamplesHook = () => {
-  [K in IPokerHandName]: {
-    handName: K
-    handCards: ICard[]
-    cards: ICard[]
+  regenerate(handName: IPokerHandName): void
+  examples: {
+    [K in IPokerHandName]: {
+      handName: K
+      handCards: ICard[]
+      cards: ICard[]
+    }
   }
 }
 

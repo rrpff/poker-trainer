@@ -3,14 +3,14 @@ import { knuthDealer } from './dealers/knuth'
 import { checkHand } from './hands'
 import { cardDescriptionToCard } from './utils'
 
-export const generatePokerHand = (handName: IPokerHandName, attempts: number = 0): IPokerHand => {
-  const cards = attempts < MAX_ATTEMPTS
+export const generatePokerHand = (handName: IPokerHandName, maxAttempts: number = MAX_ATTEMPTS, attempts: number = 0): IPokerHand => {
+  const cards = attempts < maxAttempts
     ? knuthDealer.deal(7)
     : FALLBACKS[handName].map(cardDescriptionToCard)
 
   const results = checkHand(handName, cards)
 
-  if (!results.achieved) return generatePokerHand(handName, attempts + 1)
+  if (!results.achieved) return generatePokerHand(handName, maxAttempts, attempts + 1)
 
   return {
     handName,

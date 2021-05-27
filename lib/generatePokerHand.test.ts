@@ -1,7 +1,7 @@
 import { HAND_NAMES } from '../types'
 import { checkHand } from './hands'
 import { cardDescriptionToCard } from './utils'
-import { generatePokerHand, FALLBACKS, MAX_ATTEMPTS } from './generatePokerHand'
+import { generatePokerHand, FALLBACKS } from './generatePokerHand'
 
 it.each(HAND_NAMES)('should return the correct hand name: %s', handName => {
   const hand = generatePokerHand(handName)
@@ -19,7 +19,7 @@ it.each(HAND_NAMES)('should return which cards contribute to the %s', handName =
 })
 
 it.each(HAND_NAMES)('should return a fallback for %s when reaching max attempts', handName => {
-  const hand = generatePokerHand(handName, MAX_ATTEMPTS)
+  const hand = generatePokerHand(handName, 10, 10)
   expect(hand.cards).toEqual(FALLBACKS[handName].map(cardDescriptionToCard))
 })
 

@@ -6,13 +6,13 @@ import { formatPokerHandName } from '../lib/formatPokerHandName'
 import { HAND_NAMES } from '../types'
 
 export const Hands = () => {
-  const hands = useHandExamples()
+  const { examples, regenerate } = useHandExamples()
 
   return (
     <Fragment>
       {HAND_NAMES.map(handName => {
         const formatted = formatPokerHandName(handName)
-        const result = hands[handName]
+        const result = examples[handName]
 
         return (
           <HandContainer key={handName} data-testid={`hand-${handName}`}>
@@ -24,6 +24,13 @@ export const Hands = () => {
               highlightedCards={result.handCards}
               highlighttype="exact"
             />
+
+            <a href="#!" data-testid="regenerate" onClick={e => {
+              e.preventDefault()
+              regenerate(handName)
+            }}>
+              Show another example
+            </a>
           </HandContainer>
         )
       })}
