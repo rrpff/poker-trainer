@@ -11,7 +11,7 @@ import { PageContent } from '../components/PageContent'
 
 export const GuessingGame = () => {
   const dealer = useDependency<IDealer>('dealer')
-  const game = useGuessingGame(dealer!)
+  const game = useGuessingGame({ dealer: dealer! })
   const [guessText, setGuessText] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)

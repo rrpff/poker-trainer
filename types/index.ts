@@ -79,7 +79,11 @@ export type IGuessingGameState =
   | 'ready'
   | 'summary'
 
-export type IUseGuessingGameHook = (dealer: IDealer) => {
+export type IUseGuessingGameHookInput = {
+  dealer: IDealer
+}
+
+export type IUseGuessingGameHook = (input: IUseGuessingGameHookInput) => {
   state: IGuessingGameState
   cards: ICard[]
   relevantCards?: ICard[]

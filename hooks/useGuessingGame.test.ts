@@ -3,32 +3,32 @@ import { checkGuess } from '../lib/checkGuess'
 import { knuthDealer } from '../lib/dealers/knuth'
 import { formatPokerHandName } from '../lib/formatPokerHandName'
 import { createDeck, pick } from '../lib/utils'
-import { HAND_NAMES } from '../types'
+import { HAND_NAMES, IUseGuessingGameHookInput } from '../types'
 import { useGuessingGame } from './useGuessingGame'
 
 it('should start with a set of seven cards', () => {
-  const { result } = renderHook(() => useGuessingGame(knuthDealer))
+  const { result } = renderHook(() => subject())
 
   expect(result.current.cards).toHaveLength(7)
   expect(createDeck()).toEqual(expect.arrayContaining(result.current.cards))
 })
 
 it('should start with a "ready" state', () => {
-  const { result } = renderHook(() => useGuessingGame(knuthDealer))
+  const { result } = renderHook(() => subject())
 
   expect(result.current.state).toEqual('ready')
 })
 
 it('should deal the cards using the given dealer', () => {
   const cards = knuthDealer.deal(7)
-  const { result } = renderHook(() => useGuessingGame({ deal: () => cards }))
+  const { result } = renderHook(() => subject({ dealer: { deal: () => cards } }))
 
   expect(result.current.cards).toEqual(cards)
 })
 
 it('should include results after a guess', () => {
   const cards = knuthDealer.deal(7)
-  const { result } = renderHook(() => useGuessingGame({ deal: () => cards }))
+  const { result } = renderHook(() => subject({ dealer: { deal: () => cards } }))
 
   const guess = pick([...HAND_NAMES])
   const expected = checkGuess(guess, cards)
@@ -43,7 +43,7 @@ it('should include results after a guess', () => {
 })
 
 it('should have a "summary" state after guessing', () => {
-  const { result } = renderHook(() => useGuessingGame(knuthDealer))
+  const { result } = renderHook(() => subject())
 
   const guess = pick([...HAND_NAMES])
   act(() => result.current.guess(guess))
@@ -52,7 +52,7 @@ it('should have a "summary" state after guessing', () => {
 })
 
 it('should return to its default state after proceeding', () => {
-  const { result } = renderHook(() => useGuessingGame(knuthDealer))
+  const { result } = renderHook(() => subject())
 
   const guess = pick([...HAND_NAMES])
   act(() => result.current.guess(guess))
@@ -74,7 +74,7 @@ it('should deal new cards after proceeding', () => {
       .mockReturnValueOnce(secondDeal)
   }
 
-  const { result } = renderHook(() => useGuessingGame(stubDealer))
+  const { result } = renderHook(() => subject({ dealer: stubDealer }))
 
   act(() => result.current.guess('high_card'))
   act(() => result.current.proceed())
@@ -82,3 +82,9 @@ it('should deal new cards after proceeding', () => {
   expect(result.current.cards).toEqual(secondDeal)
   expect(firstDeal).not.toEqual(secondDeal)
 })
+
+const subject = (input: Partial<IUseGuessingGameHookInput> = {}) => {
+  return useGuessingGame({
+    dealer: input.dealer || knuthDealer,
+  })
+}
