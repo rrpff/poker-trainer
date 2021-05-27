@@ -10,18 +10,23 @@ export const Hands = () => {
 
   return (
     <Fragment>
-      {HAND_NAMES.map(handName => (
-        <HandContainer key={handName} data-testid={`hand-${handName}`}>
-          <h2>{formatPokerHandName(handName).name}</h2>
-          <HandDescription>{formatPokerHandName(handName).description}</HandDescription>
+      {HAND_NAMES.map(handName => {
+        const formatted = formatPokerHandName(handName)
+        const result = hands[handName]
 
-          <CardSequence
-            cards={hands[handName].cards}
-            highlightedCards={hands[handName].handCards}
-            highlighttype="exact"
-          />
-        </HandContainer>
-      ))}
+        return (
+          <HandContainer key={handName} data-testid={`hand-${handName}`}>
+            <h2>{formatted.name}</h2>
+            <HandDescription>{formatted.description}</HandDescription>
+
+            <CardSequence
+              cards={result.cards}
+              highlightedCards={result.handCards}
+              highlighttype="exact"
+            />
+          </HandContainer>
+        )
+      })}
     </Fragment>
   )
 }
