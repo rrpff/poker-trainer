@@ -75,6 +75,21 @@ export interface IDealer {
   deal<N extends number>(num: N): ICard[]
 }
 
+export type IHistoricalHandGuess<THand> = {
+  hand: THand
+  timestamp: number
+  wasCorrect: boolean
+}
+
+export type IHistoricalHandGuesses = {
+  [K in IPokerHandName]: IHistoricalHandGuess<K>[]
+}
+
+export interface IStatisticsGateway {
+  getHistoricalHandGuesses(): Promise<IHistoricalHandGuesses>
+  trackGuessForHand(hand: IPokerHandName, wasCorrect: boolean): Promise<void>
+}
+
 export interface IAppDependencies {
   dealer: IDealer
 }
