@@ -77,7 +77,7 @@ const NavigationBar = styled.nav<{ background: CSSProperties['color'], expanded:
 
   background: ${props => props.background};
 
-  position: absolute;
+  position: ${props => props.expanded ? 'fixed' : 'absolute'};
   top: 0px;
   left: 0px;
   width: 100%;
@@ -85,6 +85,7 @@ const NavigationBar = styled.nav<{ background: CSSProperties['color'], expanded:
   z-index: 90;
 
   @media (min-width: 600px) {
+    position: absolute;
     align-items: center;
     flex-direction: row;
 
