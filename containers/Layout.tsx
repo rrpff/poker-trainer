@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { CSSProperties, ReactNode } from 'react'
+import { CSSProperties, Fragment, ReactNode } from 'react'
 import { Navigation } from '../components/Navigation'
 
 export interface ILayoutProps {
@@ -18,10 +18,11 @@ const LINKS = [
 ]
 
 export const Layout = (props: ILayoutProps) => {
+  usePageBackground(props.background)
   const { pathname } = useRouter()
 
   return (
-    <Container background={props.background}>
+    <Fragment>
       <Navigation
         selectedHref={pathname}
         links={LINKS}
@@ -31,21 +32,15 @@ export const Layout = (props: ILayoutProps) => {
       <Main>
         {props.children}
       </Main>
-    </Container>
+    </Fragment>
   )
 }
 
-const Container = styled.div<{ background?: CSSProperties['color'] }>`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
+const usePageBackground = (color: CSSProperties['color'] = '#f0f1f3') => {
+  if (typeof window === 'undefined') return
 
-  overflow: auto;
-
-  background: ${props => props.background || '#f0f1f3'};
-`
+  document.querySelector('html')!.style.background = color
+}
 
 const Main = styled.main`
   margin-top: 70px;
