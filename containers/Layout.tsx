@@ -11,7 +11,7 @@ export interface ILayoutProps {
 }
 
 const LINKS = [
-  { name: 'poker hands', href: '/' },
+  { name: 'train', href: '/' },
   { name: 'hands', href: '/hands' },
   { name: 'statistics', href: '/statistics' },
   { name: 'about', href: '/about' },
