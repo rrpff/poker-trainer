@@ -17,6 +17,5 @@ it.each(HAND_NAMES)('should remember guesses between gateways', async hand => {
 
   const guesses = await gateway2.getHistoricalHandGuesses()
 
-  expect(guesses.royal_flush).toHaveLength(1)
-  expect(guesses.high_card).toHaveLength(1)
+  expect(guesses).toHaveLength(2)
 })

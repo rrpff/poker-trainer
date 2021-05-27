@@ -96,18 +96,25 @@ export type IUseGuessingGameHook = (input: IUseGuessingGameHookInput) => {
   proceed(): void
 }
 
+export type IUseHistoricalGuessStatisticsHookInput = {
+  statistics: IStatisticsGateway
+}
+
+export type IUseHistoricalGuessStatisticsHook = (input: IUseHistoricalGuessStatisticsHookInput) => {
+  overall: { correctGuessFrequency: number | null }
+  hands: {
+    [K in IPokerHandName]: { correctGuessFrequency: number | null }
+  }
+}
+
 export type IHistoricalHandGuess<THand> = {
   hand: THand
   timestamp: number
   wasCorrect: boolean
 }
 
-export type IHistoricalHandGuesses = {
-  [K in IPokerHandName]: IHistoricalHandGuess<K>[]
-}
-
 export interface IStatisticsGateway {
-  getHistoricalHandGuesses(): Promise<IHistoricalHandGuesses>
+  getHistoricalHandGuesses(): Promise<IHistoricalHandGuess<any>[]>
   trackGuessForHand(hand: IPokerHandName, wasCorrect: boolean): Promise<void>
 }
 

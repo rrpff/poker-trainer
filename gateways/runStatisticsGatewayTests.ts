@@ -4,18 +4,7 @@ export const runStatisticsGatewayTests = (createGateway: () => IStatisticsGatewa
   it('should return none when there are no historical hand guesses', async () => {
     const gateway = createGateway()
 
-    expect(await gateway.getHistoricalHandGuesses()).toEqual({
-      royal_flush: [],
-      straight_flush: [],
-      four_of_a_kind: [],
-      full_house: [],
-      flush: [],
-      straight: [],
-      three_of_a_kind: [],
-      two_pair: [],
-      pair: [],
-      high_card: [],
-    })
+    expect(await gateway.getHistoricalHandGuesses()).toEqual([])
   })
 
   it.each(HAND_NAMES)('should include results when there are historical guesses', async hand => {
@@ -28,7 +17,7 @@ export const runStatisticsGatewayTests = (createGateway: () => IStatisticsGatewa
 
     const guesses = await gateway.getHistoricalHandGuesses()
 
-    expect(guesses[hand]).toEqual([
+    expect(guesses).toEqual([
       { hand, timestamp, wasCorrect: true }
     ])
   })
@@ -43,7 +32,7 @@ export const runStatisticsGatewayTests = (createGateway: () => IStatisticsGatewa
 
     const guesses = await gateway.getHistoricalHandGuesses()
 
-    expect(guesses[hand]).toEqual([
+    expect(guesses).toEqual([
       { hand, timestamp, wasCorrect: false }
     ])
   })
@@ -60,7 +49,7 @@ export const runStatisticsGatewayTests = (createGateway: () => IStatisticsGatewa
 
     const guesses = await gateway.getHistoricalHandGuesses()
 
-    expect(guesses[hand]).toEqual([
+    expect(guesses).toEqual([
       { hand, timestamp, wasCorrect: true },
       { hand, timestamp, wasCorrect: false },
       { hand, timestamp, wasCorrect: true },
@@ -82,7 +71,7 @@ export const runStatisticsGatewayTests = (createGateway: () => IStatisticsGatewa
 
     const guesses = await gateway.getHistoricalHandGuesses()
 
-    expect(guesses[hand]).toEqual([
+    expect(guesses).toEqual([
       { hand, timestamp: timestamp1, wasCorrect: true },
       { hand, timestamp: timestamp2, wasCorrect: false },
     ])
@@ -103,7 +92,7 @@ export const runStatisticsGatewayTests = (createGateway: () => IStatisticsGatewa
 
     const guesses = await gateway.getHistoricalHandGuesses()
 
-    expect(guesses[hand]).toEqual([
+    expect(guesses).toEqual([
       { hand, timestamp: timestamp1, wasCorrect: true },
       { hand, timestamp: timestamp2, wasCorrect: false },
     ])
@@ -118,7 +107,6 @@ export const runStatisticsGatewayTests = (createGateway: () => IStatisticsGatewa
 
     const guesses = await gateway.getHistoricalHandGuesses()
 
-    expect(guesses.royal_flush).toHaveLength(1)
-    expect(guesses.high_card).toHaveLength(2)
+    expect(guesses).toHaveLength(3)
   })
 }

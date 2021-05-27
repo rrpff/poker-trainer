@@ -1,14 +1,10 @@
-import { HAND_NAMES, IHistoricalHandGuess, IHistoricalHandGuesses, IPokerHandName, IStatisticsGateway } from '../types'
+import { IHistoricalHandGuess, IPokerHandName, IStatisticsGateway } from '../types'
 
 export class InMemoryStatisticsGateway implements IStatisticsGateway {
   private guesses: IHistoricalHandGuess<any>[] = []
 
-  public async getHistoricalHandGuesses(): Promise<IHistoricalHandGuesses> {
-    const base = {} as IHistoricalHandGuesses
-    return HAND_NAMES.reduce((guesses, hand) => ({
-      ...guesses,
-      [hand]: this.guesses.filter(stat => stat.hand === hand),
-    }), base)
+  public async getHistoricalHandGuesses(): Promise<IHistoricalHandGuess<any>[]> {
+    return this.guesses
   }
 
   public async trackGuessForHand(hand: IPokerHandName, wasCorrect: boolean): Promise<void> {

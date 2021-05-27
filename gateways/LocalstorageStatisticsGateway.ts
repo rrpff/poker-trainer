@@ -1,18 +1,13 @@
-import { HAND_NAMES, IHistoricalHandGuess, IHistoricalHandGuesses, IPokerHandName, IStatisticsGateway } from '../types'
+import { IHistoricalHandGuess, IPokerHandName, IStatisticsGateway } from '../types'
 
 export const LOCALSTORAGE_STATISTICS_KEY = 'poker-statistics'
 
 export class LocalstorageStatisticsGateway implements IStatisticsGateway {
   private guesses: IHistoricalHandGuess<any>[] = []
 
-  public async getHistoricalHandGuesses(): Promise<IHistoricalHandGuesses> {
+  public async getHistoricalHandGuesses(): Promise<IHistoricalHandGuess<any>[]> {
     this.load()
-
-    const base = {} as IHistoricalHandGuesses
-    return HAND_NAMES.reduce((guesses, hand) => ({
-      ...guesses,
-      [hand]: this.guesses.filter(stat => stat.hand === hand),
-    }), base)
+    return this.guesses
   }
 
   public async trackGuessForHand(hand: IPokerHandName, wasCorrect: boolean): Promise<void> {

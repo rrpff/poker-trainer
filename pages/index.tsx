@@ -7,7 +7,7 @@ import { LocalstorageStatisticsGateway } from '../gateways/LocalstorageStatistic
 
 const PreloadCardImages = dynamic(() => import('../components/PreloadCardImages'), { ssr: false })
 
-export const Home = () => {
+export const HomePage = () => {
   return (
     <main>
       <Head>
@@ -20,7 +20,7 @@ export const Home = () => {
   )
 }
 
-export default withDependencies(Home, {
+export default withDependencies(HomePage, {
   dealer: knuthDealer,
   statisticsGateway: new LocalstorageStatisticsGateway(),
 })

@@ -96,7 +96,7 @@ describe('if given a statistics gateway', () => {
 
     act(() => result.current.guess(guess))
 
-    expect((await statistics.getHistoricalHandGuesses()).royal_flush).toEqual([
+    expect((await statistics.getHistoricalHandGuesses())).toEqual([
       expect.objectContaining({
         hand: 'royal_flush',
         wasCorrect: expectedWasCorrect,

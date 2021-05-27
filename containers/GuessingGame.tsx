@@ -12,7 +12,7 @@ import { PageContent } from '../components/PageContent'
 export const GuessingGame = () => {
   const dealer = useDependency<IDealer>('dealer')
   const statistics = useDependency<IStatisticsGateway>('statisticsGateway')
-  const game = useGuessingGame({ dealer: dealer!, statistics: statistics || undefined })
+  const game = useGuessingGame({ dealer, statistics: statistics || undefined })
   const [guessText, setGuessText] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)

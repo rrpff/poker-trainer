@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { PageContent } from '../components/PageContent'
 
-export default function About() {
+export default function AboutPage() {
   return (
     <main>
       <Head>
-        <title>Poker Trainer - About</title>
+        <title>About - Poker Trainer</title>
       </Head>
 
       <PageContent>
