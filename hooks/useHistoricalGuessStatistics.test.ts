@@ -10,18 +10,18 @@ it('should return null results when there have been no guesses', async () => {
   await waitForNextUpdate()
 
   expect(result.current).toEqual({
-    overall: { correctGuessFrequency: null },
+    overall: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
     hands: {
-      royal_flush: { correctGuessFrequency: null },
-      straight_flush: { correctGuessFrequency: null },
-      four_of_a_kind: { correctGuessFrequency: null },
-      full_house: { correctGuessFrequency: null },
-      flush: { correctGuessFrequency: null },
-      straight: { correctGuessFrequency: null },
-      three_of_a_kind: { correctGuessFrequency: null },
-      two_pair: { correctGuessFrequency: null },
-      pair: { correctGuessFrequency: null },
-      high_card: { correctGuessFrequency: null },
+      royal_flush: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      straight_flush: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      four_of_a_kind: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      full_house: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      flush: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      straight: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      three_of_a_kind: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      two_pair: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      pair: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
+      high_card: { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 },
     },
   })
 })
@@ -34,7 +34,11 @@ it.each(HAND_NAMES)('should return a hand result of 1 when 100% of guesses have 
 
   await waitForNextUpdate()
 
-  expect(result.current.hands[hand]).toEqual({ correctGuessFrequency: 1 })
+  expect(result.current.hands[hand]).toEqual({
+    correctGuessFrequency: 1,
+    correctGuesses: 1,
+    totalGuesses: 1,
+  })
 })
 
 it.each(HAND_NAMES)('should return a hand result of 0 when 100% of guesses have been wrong', async hand => {
@@ -45,7 +49,11 @@ it.each(HAND_NAMES)('should return a hand result of 0 when 100% of guesses have 
 
   await waitForNextUpdate()
 
-  expect(result.current.hands[hand]).toEqual({ correctGuessFrequency: 0 })
+  expect(result.current.hands[hand]).toEqual({
+    correctGuessFrequency: 0,
+    correctGuesses: 0,
+    totalGuesses: 1,
+  })
 })
 
 it.each(HAND_NAMES)('should return a hand result of 0.5 when 50% of guesses have been correct', async hand => {
@@ -57,7 +65,11 @@ it.each(HAND_NAMES)('should return a hand result of 0.5 when 50% of guesses have
 
   await waitForNextUpdate()
 
-  expect(result.current.hands[hand]).toEqual({ correctGuessFrequency: 0.5 })
+  expect(result.current.hands[hand]).toEqual({
+    correctGuessFrequency: 0.5,
+    correctGuesses: 1,
+    totalGuesses: 2,
+  })
 })
 
 it.each(HAND_NAMES)('should return an overall result - example 1', async () => {
@@ -69,7 +81,11 @@ it.each(HAND_NAMES)('should return an overall result - example 1', async () => {
 
   await waitForNextUpdate()
 
-  expect(result.current.overall).toEqual({ correctGuessFrequency: 0.5 })
+  expect(result.current.overall).toEqual({
+    correctGuessFrequency: 0.5,
+    correctGuesses: 1,
+    totalGuesses: 2,
+  })
 })
 
 it.each(HAND_NAMES)('should return an overall result - example 2', async () => {
@@ -84,7 +100,11 @@ it.each(HAND_NAMES)('should return an overall result - example 2', async () => {
 
   await waitForNextUpdate()
 
-  expect(result.current.overall).toEqual({ correctGuessFrequency: 0.8 })
+  expect(result.current.overall).toEqual({
+    correctGuessFrequency: 0.8,
+    correctGuesses: 4,
+    totalGuesses: 5,
+  })
 })
 
 const subject = useHistoricalGuessStatistics

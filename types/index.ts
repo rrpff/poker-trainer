@@ -106,10 +106,16 @@ export type IUseHistoricalGuessStatisticsHookInput = {
   statistics: IStatisticsGateway
 }
 
+export type IUseHistoricalGuessStatisticsHookResult = {
+  correctGuessFrequency: number | null
+  correctGuesses: number
+  totalGuesses: number
+}
+
 export type IUseHistoricalGuessStatisticsHook = (input: IUseHistoricalGuessStatisticsHookInput) => {
-  overall: { correctGuessFrequency: number | null }
+  overall: IUseHistoricalGuessStatisticsHookResult
   hands: {
-    [K in IPokerHandName]: { correctGuessFrequency: number | null }
+    [K in IPokerHandName]: IUseHistoricalGuessStatisticsHookResult
   }
 }
 

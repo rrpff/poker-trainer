@@ -4,7 +4,7 @@ import { useDependency } from 'react-use-dependency'
 import { Column, Row } from '../components/Grid'
 import { useHistoricalGuessStatistics } from '../hooks/useHistoricalGuessStatistics'
 import { formatPokerHandName } from '../lib/formatPokerHandName'
-import { HAND_NAMES, IStatisticsGateway } from '../types'
+import { HAND_NAMES, IStatisticsGateway, IUseHistoricalGuessStatisticsHookResult } from '../types'
 
 export const Statistics = () => {
   const statistics = useDependency<IStatisticsGateway>('statisticsGateway')
@@ -14,7 +14,7 @@ export const Statistics = () => {
     <StatisticsContainer>
       <Statistic
         title="Overall"
-        frequency={results.overall.correctGuessFrequency}
+        result={results.overall}
         testid="statistics-overall"
         highlight
       />
@@ -22,7 +22,7 @@ export const Statistics = () => {
       {HAND_NAMES.map(hand => (
         <Statistic
           title={formatPokerHandName(hand).name}
-          frequency={results.hands[hand].correctGuessFrequency}
+          result={results.hands[hand]}
           key={hand}
           testid={`statistics-hand-${hand}`}
         />
@@ -31,16 +31,25 @@ export const Statistics = () => {
   )
 }
 
-const Statistic = (props: { highlight?: boolean, testid: string, title: string, frequency: number | null }) => {
-  const percentageText = props.frequency !== null
-    ? `${Math.round(props.frequency! * 100)}${props.highlight ? '%' : ''}`
+const Statistic = (props: {
+  highlight?: boolean,
+  testid: string,
+  title: string,
+  result: IUseHistoricalGuessStatisticsHookResult,
+}) => {
+  const percentageText = props.result.correctGuessFrequency !== null
+    ? `${Math.round(props.result.correctGuessFrequency! * 100)}${props.highlight ? '%' : ''}`
     : ''
 
-  const color = props.frequency === null ? '' :
-    props.frequency > 0.9 ? '#1dd1a1' :
+  const fractionText = props.result.correctGuessFrequency !== null
+    ? `${props.result.correctGuesses}/${props.result.totalGuesses} correct`
+    : 'Never seen'
+
+  const color = props.result.correctGuessFrequency === null ? '' :
+    props.result.correctGuessFrequency > 0.9 ? '#1dd1a1' :
     '#feca57'
 
-  const background = props.frequency === null
+  const background = props.result.correctGuessFrequency === null
     ? '#c8d6e5'
     : '#ff6b6b'
 
@@ -49,7 +58,7 @@ const Statistic = (props: { highlight?: boolean, testid: string, title: string, 
       <Row>
         <Column>
           <RadialProgress
-            progress={props.frequency || 0}
+            progress={props.result.correctGuessFrequency || 0}
             size={props.highlight ? 120 : 60}
             strokeWidth={props.highlight ? 10 : 6}
             fontSize={props.highlight ? '1.3rem' : '0.8rem'}
@@ -63,6 +72,7 @@ const Statistic = (props: { highlight?: boolean, testid: string, title: string, 
           </RadialProgress>
 
           <span>{props.title}</span>
+          <span style={{ color: '#576574' }}>{fractionText}</span>
         </Column>
       </Row>
     </StatisticContainer>

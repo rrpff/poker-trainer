@@ -2,34 +2,20 @@ import { useEffect, useState } from 'react'
 import { IHistoricalHandGuess, IPokerHandName, IUseHistoricalGuessStatisticsHook } from '../types'
 
 export const useHistoricalGuessStatistics: IUseHistoricalGuessStatisticsHook = input => {
-  const [results, setResults] = useState<ReturnType<IUseHistoricalGuessStatisticsHook>>({
-    overall: { correctGuessFrequency: null },
-    hands: {
-      royal_flush: { correctGuessFrequency: null },
-      straight_flush: { correctGuessFrequency: null },
-      four_of_a_kind: { correctGuessFrequency: null },
-      full_house: { correctGuessFrequency: null },
-      flush: { correctGuessFrequency: null },
-      straight: { correctGuessFrequency: null },
-      three_of_a_kind: { correctGuessFrequency: null },
-      two_pair: { correctGuessFrequency: null },
-      pair: { correctGuessFrequency: null },
-      high_card: { correctGuessFrequency: null },
-    },
-  })
+  const [results, setResults] = useState<ReturnType<IUseHistoricalGuessStatisticsHook>>(DEFAULT_RESULTS)
 
   useEffect(() => {
     input.statistics.getHistoricalHandGuesses().then(guesses => {
       const resultForArray = (arr: IHistoricalHandGuess<any>[]) => {
-        if (arr.length === 0) return {
-          correctGuessFrequency: null,
-        }
+        if (arr.length === 0) return NULL_RESULT
 
         const numCorrect = arr.filter(g => g.wasCorrect).length
         const numTotal = arr.length
 
         return {
           correctGuessFrequency: numCorrect / numTotal,
+          correctGuesses: numCorrect,
+          totalGuesses: numTotal,
         }
       }
 
@@ -57,4 +43,21 @@ export const useHistoricalGuessStatistics: IUseHistoricalGuessStatisticsHook = i
   }, [])
 
   return results
+}
+
+const NULL_RESULT = { correctGuessFrequency: null, correctGuesses: 0, totalGuesses: 0 }
+const DEFAULT_RESULTS = {
+  overall: NULL_RESULT,
+  hands: {
+    royal_flush: NULL_RESULT,
+    straight_flush: NULL_RESULT,
+    four_of_a_kind: NULL_RESULT,
+    full_house: NULL_RESULT,
+    flush: NULL_RESULT,
+    straight: NULL_RESULT,
+    three_of_a_kind: NULL_RESULT,
+    two_pair: NULL_RESULT,
+    pair: NULL_RESULT,
+    high_card: NULL_RESULT,
+  },
 }
