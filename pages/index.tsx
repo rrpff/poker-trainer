@@ -10,7 +10,7 @@ const PreloadCardImages = dynamic(() => import('../components/PreloadCardImages'
 
 export const HomePage = () => {
   return (
-    <Layout>
+    <Layout background="#fff" navigationColor="light" navigationBackground="#01a3a4">
       <Head>
         <title>Poker Trainer</title>
       </Head>

@@ -8,6 +8,7 @@ import { Column, Row } from '../components/Grid'
 import { HeroInput } from '../components/HeroInput'
 import { IDealer, IStatisticsGateway } from '../types'
 import { PageContent } from '../components/PageContent'
+import styled from '@emotion/styled'
 
 export const GuessingGame = () => {
   const dealer = useDependency<IDealer>('dealer')
@@ -39,11 +40,13 @@ export const GuessingGame = () => {
 
   return (
     <div>
-      <CardSequence
-        highlighttype={game.accuracy || 'exact'}
-        highlightedCards={game.relevantCards || []}
-        cards={game.cards}
-      />
+      <CardsContainer>
+        <CardSequence
+          highlighttype={game.accuracy || 'exact'}
+          highlightedCards={game.relevantCards || []}
+          cards={game.cards}
+        />
+      </CardsContainer>
 
       <PageContent style={{ paddingTop: '30px', paddingBottom: '60px' }}>
         <h3>What is the winning hand?</h3>
@@ -100,3 +103,8 @@ export const GuessingGame = () => {
     </div>
   )
 }
+
+const CardsContainer = styled.div`
+  background: #01a3a4;
+  padding: 20px 0;
+`

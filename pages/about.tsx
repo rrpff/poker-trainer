@@ -9,7 +9,7 @@ const AboutPage = () => {
         <title>About - Poker Trainer</title>
       </Head>
 
-      <PageContent>
+      <PageContent style={{ paddingTop: '10px' }}>
         <h1>a tool for hopefully getting better at recognising poker hands</h1>
 
         <p>made by <a href="https://github.com/rrpff">Richard Foster</a></p>

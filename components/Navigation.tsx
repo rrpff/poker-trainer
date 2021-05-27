@@ -1,15 +1,22 @@
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import React, { MouseEvent, useState } from 'react'
+import React, { CSSProperties, MouseEvent, useState } from 'react'
 import { GrMenu, GrClose } from 'react-icons/gr'
 import { PageContent } from './PageContent'
 
 export interface INavigationProps {
   links: { name: string, href: string }[]
   selectedHref?: string
+  background?: CSSProperties['color']
+  color?: 'light' | 'dark'
 }
 
-export const Navigation = (props: INavigationProps) => {
+export const Navigation = ({
+  links,
+  selectedHref,
+  background = '#f0f1f3',
+  color = 'dark',
+}: INavigationProps) => {
   const [expanded, setExpanded] = useState(false)
 
   const handleOpen = (e: MouseEvent) => {
@@ -25,15 +32,15 @@ export const Navigation = (props: INavigationProps) => {
   }
 
   return (
-    <NavigationBar expanded={expanded}>
+    <NavigationBar background={background} color={color} expanded={expanded}>
       {expanded ? (
-        <MobileIconContainer>
+        <MobileIconContainer color={color}>
           <a href="#!" onClick={handleClose}>
             <GrClose />
           </a>
         </MobileIconContainer>
       ) : (
-        <MobileIconContainer>
+        <MobileIconContainer color={color}>
           <a href="#!" onClick={handleOpen}>
             <GrMenu />
             <span>menu</span>
@@ -42,11 +49,12 @@ export const Navigation = (props: INavigationProps) => {
       )}
       <NavigationItems expanded={expanded}>
         <PageContent style={{ textAlign: 'left' }}>
-          {props.links.map((link, index) => (
+          {links.map((link, index) => (
             <NavigationItem key={index}>
               <Link href={link.href} passHref>
                 <NavigationLink
-                  selected={props.selectedHref === link.href}
+                  selected={selectedHref === link.href}
+                  color={color}
                   onClick={() => {
                     setExpanded(false)
                   }}
@@ -62,12 +70,12 @@ export const Navigation = (props: INavigationProps) => {
   )
 }
 
-const NavigationBar = styled.nav<{ expanded: boolean }>`
+const NavigationBar = styled.nav<{ background: CSSProperties['color'], expanded: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: left;
 
-  background: #f0f1f3;
+  background: ${props => props.background};
 
   position: absolute;
   top: 0px;
@@ -81,11 +89,11 @@ const NavigationBar = styled.nav<{ expanded: boolean }>`
     flex-direction: row;
 
     height: 55px;
-    padding-top: 20px;
+    padding: 30px 0 20px;
   }
 `
 
-const MobileIconContainer = styled.div`
+const MobileIconContainer = styled.div<{ color: 'light' | 'dark' }>`
   display: block;
   font-size: 2rem;
   padding: 20px;
@@ -97,12 +105,13 @@ const MobileIconContainer = styled.div`
 
   span {
     font-size: 1rem;
-    color: #8395a7;
+    color: ${props => props.color === 'light' ? '#fff' : '#8395a7'};
     padding-left: 12px;
+    opacity: 0.8;
   }
 
   > a > svg path {
-    stroke: #8395a7;
+    stroke: ${props => props.color === 'light' ? '#fff' : '#8395a7'};
   }
 
   @media (min-width: 600px) {
@@ -133,10 +142,12 @@ const NavigationItem = styled.li`
   }
 `
 
-const NavigationLink = styled.a<{ selected: boolean }>`
+const NavigationLink = styled.a<{ color: 'light' | 'dark', selected: boolean }>`
   text-transform: lowercase;
-  color: ${props => props.selected ?  '#576574' : '#8395a7'};
+  color: ${props => props.color === 'light' ? '#fff' : '#576574'};
+  opacity: ${props => props.selected ? 1 : 0.8};
   font-weight: ${props => props.selected ? 'bold' : 'auto'};
+  transition: opacity 0.2s;
 
   display: block;
   padding: 6px 0;
@@ -148,6 +159,7 @@ const NavigationLink = styled.a<{ selected: boolean }>`
   }
 
   &:hover {
-    color: #576574;
+    color: ${props => props.color === 'light' ? '#fff' : '#576574'};
+    opacity: 1;
   }
 `
