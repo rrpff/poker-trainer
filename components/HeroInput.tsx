@@ -6,6 +6,7 @@ export type IHeroInputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputEle
 export const HeroInput = styled.input`
   font-size: 2rem;
   font-weight: bold;
+  background: transparent;
   border: none;
   border-bottom: 2px solid #c8d6e5;
   padding: 10px 0px;
