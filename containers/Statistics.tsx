@@ -163,11 +163,15 @@ const StatisticContainer = styled.section<{ highlight?: boolean }>`
   border-radius: 5px;
   padding: 20px;
 
-  grid-column: span ${props => props.highlight ? 4 : 1};
+  grid-column: span 2;
 
   span {
     display: block;
     font-size: 0.8rem;
     margin-top: 8px;
+  }
+
+  @media (min-width: 600px) {
+    grid-column: span ${props => props.highlight ? 2 : 1};
   }
 `
