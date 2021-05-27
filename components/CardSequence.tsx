@@ -9,9 +9,10 @@ export interface ICardSequenceProps {
   cards: ICard[]
   highlighttype: IHandGuessAccuracy
   highlightedCards: ICard[]
+  alwaysHighlighted?: boolean
 }
 
-export const CardSequence = ({ cards, highlighttype, highlightedCards }: ICardSequenceProps) => {
+export const CardSequence = (props: ICardSequenceProps) => {
   const [dimensions, setDimensions] = useState({ width: -1, height: -1 })
   const cardWidth = useMemo(() => Math.max(60, dimensions.width / 10), [dimensions])
 
@@ -20,12 +21,13 @@ export const CardSequence = ({ cards, highlighttype, highlightedCards }: ICardSe
       <Measure bounds onResize={rect => setDimensions(rect.bounds || { width: -1, height: -1 })}>
         {({ measureRef }) =>
           <div ref={measureRef}>
-            {cards.map((card, index) =>
+            {props.cards.map((card, index) =>
               <SwappableCard
                 key={index}
                 card={card}
-                highlighttype={highlighttype}
-                highlighted={highlightedCards.some(c => cardsMatch(c, card))}
+                alwaysHighlighted={props.alwaysHighlighted}
+                highlighttype={props.highlighttype}
+                highlighted={props.highlightedCards.some(c => cardsMatch(c, card))}
                 offset={index * 100}
                 width={cardWidth}
               />

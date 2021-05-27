@@ -23,6 +23,7 @@ export const Hands = () => {
               cards={result.cards}
               highlightedCards={result.handCards}
               highlighttype="exact"
+              alwaysHighlighted
             />
 
             <a href="#!" data-testid="regenerate" onClick={e => {
