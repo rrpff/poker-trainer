@@ -2,23 +2,7 @@ import { useEffect, useState } from 'react'
 import { checkGuess } from '../lib/checkGuess'
 import { formatPokerHandName } from '../lib/formatPokerHandName'
 import { parseGuess } from '../lib/parseGuess'
-import { ICard, IDealer, IHandGuessAccuracy, IHandGuessResult } from '../types'
-
-type IGuessingGameState =
-  | 'ready'
-  | 'summary'
-
-type IUseGuessingGameHook = (dealer: IDealer) => {
-  state: IGuessingGameState
-  cards: ICard[]
-  relevantCards?: ICard[]
-  correctHandName?: string
-  correctHandDescription?: string
-  accuracy?: IHandGuessAccuracy
-
-  guess(text: string): void
-  proceed(): void
-}
+import { ICard, IDealer, IGuessingGameState, IHandGuessResult, IUseGuessingGameHook } from '../types'
 
 export const useGuessingGame: IUseGuessingGameHook = (dealer: IDealer) => {
   const [cards, setCards] = useState<ICard[]>([])

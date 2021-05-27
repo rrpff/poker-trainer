@@ -75,6 +75,22 @@ export interface IDealer {
   deal<N extends number>(num: N): ICard[]
 }
 
+export type IGuessingGameState =
+  | 'ready'
+  | 'summary'
+
+export type IUseGuessingGameHook = (dealer: IDealer) => {
+  state: IGuessingGameState
+  cards: ICard[]
+  relevantCards?: ICard[]
+  correctHandName?: string
+  correctHandDescription?: string
+  accuracy?: IHandGuessAccuracy
+
+  guess(text: string): void
+  proceed(): void
+}
+
 export type IHistoricalHandGuess<THand> = {
   hand: THand
   timestamp: number
