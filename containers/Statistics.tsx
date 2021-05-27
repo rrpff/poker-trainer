@@ -43,7 +43,7 @@ const Statistic = (props: { highlight?: boolean, testid: string, title: string, 
 
   const background = props.frequency === null
     ? '#c8d6e5'
-    : '#eff4fa'
+    : '#f0f1f3'
 
   return (
     <StatisticContainer highlight={props.highlight}>

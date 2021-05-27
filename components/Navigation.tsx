@@ -67,7 +67,7 @@ const NavigationBar = styled.nav<{ expanded: boolean }>`
   flex-direction: column;
   justify-content: left;
 
-  background: #eff4fa;
+  background: #f0f1f3;
 
   position: absolute;
   top: 0px;
