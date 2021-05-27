@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import { PageContent } from '../components/PageContent'
+import { Layout } from '../containers/Layout'
 
-export default function AboutPage() {
+const AboutPage = () => {
   return (
-    <main>
+    <Layout>
       <Head>
         <title>About - Poker Trainer</title>
       </Head>
@@ -14,6 +15,8 @@ export default function AboutPage() {
         <p>made by <a href="https://github.com/rrpff">Richard Foster</a></p>
         <p>poker card svgs by <a href="https://www.me.uk/cards/">Adrian Kennard (RevK®)</a></p>
       </PageContent>
-    </main>
+    </Layout>
   )
 }
+
+export default AboutPage

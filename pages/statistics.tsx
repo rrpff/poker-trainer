@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import { PageContent } from '../components/PageContent'
+import { Layout } from '../containers/Layout'
 import { Statistics } from '../containers/Statistics'
 import { LocalstorageStatisticsGateway } from '../gateways/LocalstorageStatisticsGateway'
 import { withDependencies } from '../lib/withDependencies'
 
 export const StatisticsPage = () => {
   return (
-    <main>
+    <Layout>
       <Head>
         <title>Statistics - Poker Trainer</title>
       </Head>
@@ -14,7 +15,7 @@ export const StatisticsPage = () => {
       <PageContent>
         <Statistics />
       </PageContent>
-    </main>
+    </Layout>
   )
 }
 
