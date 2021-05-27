@@ -21,6 +21,8 @@ export const useGuessingGame: IUseGuessingGameHook = input => {
     setState('summary')
     setResults(results)
     setActualBestHand(formatPokerHandName(results.bestName))
+
+    input.statistics?.trackGuessForHand(results.bestName, results.accuracy === 'exact')
   }
 
   const proceed = () => {

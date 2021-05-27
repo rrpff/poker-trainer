@@ -1,11 +1,12 @@
 import { DependencyProvider } from 'react-use-dependency'
 import { render, screen, act, fireEvent } from '@testing-library/react'
-import { HAND_NAMES, ICard, IDealer, IPokerHandName } from '../types'
+import { HAND_NAMES, IAppDependencies, ICard, IDealer, IPokerHandName } from '../types'
 import { knuthDealer } from '../lib/dealers/knuth'
 import { cardDescriptionToCard, pick } from '../lib/utils'
 import { checkGuess } from '../lib/checkGuess'
 import { formatPokerHandName } from '../lib/formatPokerHandName'
 import { GuessingGame } from './GuessingGame'
+import { InMemoryStatisticsGateway } from '../gateways/InMemoryStatisticsGateway'
 
 beforeEach(() => jest.useFakeTimers())
 afterEach(() => jest.resetAllMocks())
@@ -144,8 +145,9 @@ const expectScreenToContainCards = async (cards: ICard[]) => {
 }
 
 const subject = (config: { dealer?: IDealer } = {}) => {
-  const dependencies = {
-    dealer: config.dealer || knuthDealer
+  const dependencies: IAppDependencies = {
+    dealer: config.dealer || knuthDealer,
+    statisticsGateway: new InMemoryStatisticsGateway(),
   }
 
   render(

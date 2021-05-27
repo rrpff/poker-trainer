@@ -6,12 +6,13 @@ import { CardSequence } from '../components/CardSequence'
 import { Choice } from '../components/Choice'
 import { Column, Row } from '../components/Grid'
 import { HeroInput } from '../components/HeroInput'
-import { IDealer } from '../types'
+import { IDealer, IStatisticsGateway } from '../types'
 import { PageContent } from '../components/PageContent'
 
 export const GuessingGame = () => {
   const dealer = useDependency<IDealer>('dealer')
-  const game = useGuessingGame({ dealer: dealer! })
+  const statistics = useDependency<IStatisticsGateway>('statisticsGateway')
+  const game = useGuessingGame({ dealer: dealer!, statistics: statistics || undefined })
   const [guessText, setGuessText] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)

@@ -3,10 +3,12 @@ import { DependencyProvider } from 'react-use-dependency'
 import { IAppDependencies } from '../types'
 import { knuthDealer } from '../lib/dealers/knuth'
 import { Layout } from '../containers/Layout'
+import { LocalstorageStatisticsGateway } from '../gateways/LocalstorageStatisticsGateway'
 import '../styles/globals.css'
 
 const dependencies: IAppDependencies = {
-  dealer: knuthDealer
+  dealer: knuthDealer,
+  statisticsGateway: new LocalstorageStatisticsGateway(),
 }
 
 function App({ Component, pageProps }: AppProps) {

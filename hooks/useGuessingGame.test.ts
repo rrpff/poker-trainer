@@ -1,9 +1,10 @@
 import { renderHook, act } from '@testing-library/react-hooks'
+import { InMemoryStatisticsGateway } from '../gateways/InMemoryStatisticsGateway'
 import { checkGuess } from '../lib/checkGuess'
 import { knuthDealer } from '../lib/dealers/knuth'
 import { formatPokerHandName } from '../lib/formatPokerHandName'
-import { createDeck, pick } from '../lib/utils'
-import { HAND_NAMES, IUseGuessingGameHookInput } from '../types'
+import { cardDescriptionToCard, createDeck, pick } from '../lib/utils'
+import { HAND_NAMES, IDealer, IUseGuessingGameHookInput } from '../types'
 import { useGuessingGame } from './useGuessingGame'
 
 it('should start with a set of seven cards', () => {
@@ -83,8 +84,34 @@ it('should deal new cards after proceeding', () => {
   expect(firstDeal).not.toEqual(secondDeal)
 })
 
+describe('if given a statistics gateway', () => {
+  it.each([
+    { guess: 'royal flush', expectedWasCorrect: true },
+    { guess: 'flush', expectedWasCorrect: false },
+    { guess: 'pair', expectedWasCorrect: false },
+  ])('should record guesses', async ({ guess, expectedWasCorrect }) => {
+    const dealer = royalFlushDealer
+    const statistics = new InMemoryStatisticsGateway()
+    const { result } = renderHook(() => subject({ dealer, statistics }))
+
+    act(() => result.current.guess(guess))
+
+    expect((await statistics.getHistoricalHandGuesses()).royal_flush).toEqual([
+      expect.objectContaining({
+        hand: 'royal_flush',
+        wasCorrect: expectedWasCorrect,
+      })
+    ])
+  })
+})
+
+const royalFlushDealer: IDealer = {
+  deal: () => ['AC', 'KC', 'QC', 'JC', 'TC', 'AD', '5D'].map(cardDescriptionToCard),
+}
+
 const subject = (input: Partial<IUseGuessingGameHookInput> = {}) => {
   return useGuessingGame({
     dealer: input.dealer || knuthDealer,
+    statistics: input.statistics,
   })
 }

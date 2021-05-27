@@ -81,6 +81,7 @@ export type IGuessingGameState =
 
 export type IUseGuessingGameHookInput = {
   dealer: IDealer
+  statistics?: IStatisticsGateway
 }
 
 export type IUseGuessingGameHook = (input: IUseGuessingGameHookInput) => {
@@ -112,4 +113,5 @@ export interface IStatisticsGateway {
 
 export interface IAppDependencies {
   dealer: IDealer
+  statisticsGateway: IStatisticsGateway
 }
