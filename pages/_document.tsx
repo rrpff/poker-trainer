@@ -10,8 +10,6 @@ class CustomDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Poker Trainer</title>
-
           <meta name="description" content="A tool for learning poker hands" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="msapplication-TileColor" content="#da532c" />
