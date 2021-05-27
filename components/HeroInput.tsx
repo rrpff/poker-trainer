@@ -9,9 +9,10 @@ export const HeroInput = styled.input`
   border: none;
   border-bottom: 2px solid #c8d6e5;
   padding: 10px 0px;
+  text-align: center;
   transition: border-bottom 0.2s;
 
-  width: 100%;
+  width: 66%;
 
   &:focus {
     border-bottom: 2px solid #000;

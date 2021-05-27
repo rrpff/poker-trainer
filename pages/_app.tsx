@@ -1,7 +1,8 @@
 import type { AppProps } from 'next/app'
 import { DependencyProvider } from 'react-use-dependency'
-import { knuthDealer } from '../lib/dealers/knuth'
 import { IAppDependencies } from '../types'
+import { knuthDealer } from '../lib/dealers/knuth'
+import { Layout } from '../containers/Layout'
 import '../styles/globals.css'
 
 const dependencies: IAppDependencies = {
@@ -11,7 +12,9 @@ const dependencies: IAppDependencies = {
 function App({ Component, pageProps }: AppProps) {
   return (
     <DependencyProvider value={dependencies}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </DependencyProvider>
   )
 }

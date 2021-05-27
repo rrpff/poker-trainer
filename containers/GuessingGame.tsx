@@ -7,6 +7,7 @@ import { Choice } from '../components/Choice'
 import { Column, Row } from '../components/Grid'
 import { HeroInput } from '../components/HeroInput'
 import { IDealer } from '../types'
+import { PageContent } from '../components/PageContent'
 
 export const GuessingGame = () => {
   const dealer = useDependency<IDealer>('dealer')
@@ -43,7 +44,7 @@ export const GuessingGame = () => {
         cards={game.cards}
       />
 
-      <div style={{ position: 'relative', margin: 'auto', width: 400, maxWidth: 'calc(100% - 60px)', padding: '30px 30px 60px' }}>
+      <PageContent style={{ paddingTop: '30px', paddingBottom: '60px' }}>
         <h3>What is the winning hand?</h3>
 
         <form onSubmit={handleGuess} style={{ marginBottom: 20 }} data-testid="guess-form">
@@ -61,14 +62,14 @@ export const GuessingGame = () => {
 
         {game.state === 'ready' && (
           <Row>
-            <Column>
+            <Column style={{ textAlign: 'right', paddingRight: 20 }}>
               <Choice data-testid="guess-royal_flush" href="#!" onClick={() => submitGuess('royal_flush')}>royal flush</Choice>
               <Choice data-testid="guess-straight_flush" href="#!" onClick={() => submitGuess('straight_flush')}>straight flush</Choice>
               <Choice data-testid="guess-four_of_a_kind" href="#!" onClick={() => submitGuess('four_of_a_kind')}>four of a kind</Choice>
               <Choice data-testid="guess-full_house" href="#!" onClick={() => submitGuess('full_house')}>full house</Choice>
               <Choice data-testid="guess-flush" href="#!" onClick={() => submitGuess('flush')}>flush</Choice>
             </Column>
-            <Column>
+            <Column style={{ textAlign: 'left', paddingLeft: 20 }}>
               <Choice data-testid="guess-straight" href="#!" onClick={() => submitGuess('straight')}>straight</Choice>
               <Choice data-testid="guess-three_of_a_kind" href="#!" onClick={() => submitGuess('three_of_a_kind')}>three of a kind</Choice>
               <Choice data-testid="guess-two_pair" href="#!" onClick={() => submitGuess('two_pair')}>two pair</Choice>
@@ -94,7 +95,7 @@ export const GuessingGame = () => {
             <Button data-testid="proceed" ref={buttonRef} style={{ padding: 20 }} onClick={() => handleNext()}>Next &rarr;</Button>
           </div>
         )}
-      </div>
+      </PageContent>
     </div>
   )
 }
