@@ -2,6 +2,7 @@ import Link from 'next/link'
 import styled from '@emotion/styled'
 import React, { CSSProperties, MouseEvent, useState } from 'react'
 import { GrMenu, GrClose } from 'react-icons/gr'
+import { GiPokerHand } from 'react-icons/gi'
 import { PageContent } from './PageContent'
 
 export interface INavigationProps {
@@ -49,6 +50,11 @@ export const Navigation = ({
       )}
       <NavigationItems expanded={expanded}>
         <PageContent style={{ textAlign: 'left' }}>
+          <Link href="/" passHref>
+            <LogoLink color={color}>
+              <GiPokerHand />
+            </LogoLink>
+          </Link>
           {links.map((link, index) => (
             <NavigationItem key={index}>
               <Link href={link.href} passHref>
@@ -120,6 +126,22 @@ const MobileIconContainer = styled.div<{ color: 'light' | 'dark' }>`
   }
 `
 
+const LogoLink = styled.a<{ color: 'light' | 'dark' }>`
+  display: none;
+
+  @media (min-width: 600px) {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+
+    svg {
+      color: ${props => props.color === 'light' ? '#fff' : '#8395a7'};
+      font-size: 1.4rem;
+      position: relative;
+    }
+  }
+`
+
 const NavigationItems = styled.ul<{ expanded: boolean }>`
   display: ${props => props.expanded ? 'block' : 'none'};
 
@@ -140,6 +162,10 @@ const NavigationItem = styled.li`
   @media (min-width: 600px) {
     display: inline-block;
     padding: 0 3px 0 0;
+
+    &:first-of-type a {
+      padding-left: 5px;
+    }
   }
 `
 
