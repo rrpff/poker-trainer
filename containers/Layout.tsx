@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { CSSProperties, Fragment, ReactNode } from 'react'
+import breakpoints from '../styles/breakpoints'
 import { Navigation } from '../components/Navigation'
 
 export interface ILayoutProps {
@@ -46,7 +47,7 @@ const Main = styled.main`
   margin-top: 70px;
   z-index: 10;
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     margin-top: 55px;
   }
 `

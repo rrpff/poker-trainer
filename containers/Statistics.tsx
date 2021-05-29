@@ -4,6 +4,7 @@ import { useDependency } from 'react-use-dependency'
 import { Column, Row } from '../components/Grid'
 import { useHistoricalGuessStatistics } from '../hooks/useHistoricalGuessStatistics'
 import { formatPokerHandName } from '../lib/formatPokerHandName'
+import breakpoints from '../styles/breakpoints'
 import { HAND_NAMES, IStatisticsGateway, IUseHistoricalGuessStatisticsHookResult } from '../types'
 
 export const Statistics = () => {
@@ -180,7 +181,7 @@ const StatisticContainer = styled.section<{ highlight?: boolean }>`
     margin-top: 8px;
   }
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     grid-column: span ${props => props.highlight ? 2 : 1};
   }
 `

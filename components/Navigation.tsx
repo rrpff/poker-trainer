@@ -4,6 +4,7 @@ import React, { CSSProperties, MouseEvent, useState } from 'react'
 import { GrMenu, GrClose } from 'react-icons/gr'
 import { GiPokerHand } from 'react-icons/gi'
 import { PageContent } from './PageContent'
+import breakpoints from '../styles/breakpoints'
 
 export interface INavigationProps {
   links: { name: string, href: string }[]
@@ -90,7 +91,7 @@ const NavigationBar = styled.nav<{ background: CSSProperties['color'], expanded:
   height: ${props => props.expanded ? '100%' : '70px'};
   z-index: 90;
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     position: absolute;
     align-items: center;
     flex-direction: row;
@@ -121,7 +122,7 @@ const MobileIconContainer = styled.div<{ color: 'light' | 'dark' }>`
     stroke: ${props => props.color === 'light' ? '#fff' : '#8395a7'};
   }
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     display: none;
   }
 `
@@ -129,7 +130,7 @@ const MobileIconContainer = styled.div<{ color: 'light' | 'dark' }>`
 const LogoLink = styled.a<{ color: 'light' | 'dark' }>`
   display: none;
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     display: inline-block;
     position: relative;
     top: 5px;
@@ -150,7 +151,7 @@ const NavigationItems = styled.ul<{ expanded: boolean }>`
   list-style-type: none;
   width: 100%;
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     display: inline-block;
     padding: 0px 0px 4px 0px;
   }
@@ -159,7 +160,7 @@ const NavigationItems = styled.ul<{ expanded: boolean }>`
 const NavigationItem = styled.li`
   display: block;
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     display: inline-block;
     padding: 0 3px 0 0;
 
@@ -180,7 +181,7 @@ const NavigationLink = styled.a<{ color: 'light' | 'dark', selected: boolean }>`
   padding: 6px 0;
   font-size: 2rem;
 
-  @media (min-width: 600px) {
+  ${breakpoints.desktop} {
     padding-right: 8px;
     font-size: 1rem;
   }
